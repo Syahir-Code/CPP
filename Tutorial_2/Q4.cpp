@@ -11,7 +11,7 @@ int main () {
     showArray(myArray, numItem);
     getMinMax(myArray, numItem, min, max);
     cout << "\n The maximum = " << max;
-    cout << "\n The minimum = " << min;
+    cout << "\n The minimum = " << min << endl;
     return 1;
 }
 
