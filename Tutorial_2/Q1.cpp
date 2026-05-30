@@ -5,7 +5,7 @@ int factorial (int *num);
 
 int main() {
     int  x=4;
-    cout << "\nFactorial of " << x << " = " << factorial(&x);
+    cout << "\nFactorial of " << x << " = " << factorial(&x) << endl;
 
     return 0;
 }
