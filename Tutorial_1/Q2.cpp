@@ -15,19 +15,19 @@ int main() {
 
     cout << "Your weight category is: ";
     if (bmi < 18.5) {
-        cout << "Underweight";
+        cout << "Underweight" << endl;
     }
     
     else if (bmi >= 18.5  && bmi <= 24.9) {
-        cout << "Healthy";
+        cout << "Healthy" << endl;
     }
     
     else if (bmi >= 25.0 && bmi <= 29.9) {
-        cout << "Overweight";
+        cout << "Overweight" << endl;
     }
     
     else if (bmi >= 30.0) {
-        cout << "Obesity";
+        cout << "Obesity" << endl;
     }
 
     return 0;

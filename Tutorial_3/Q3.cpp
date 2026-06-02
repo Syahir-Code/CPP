@@ -9,7 +9,7 @@ int main () {
     float arrayNum[4] = {1.0, 2.0, 3.0, 4.0};
     int numElem = sizeof(arrayNum) / sizeof(float);
     sumAverage(arrayNum, numElem, sum, average);
-    cout << "\n sum = " << sum << " average = " << average;
+    cout << "\n sum = " << sum << " average = " << average << endl;
 
     return 1;
 }
