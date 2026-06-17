@@ -5,7 +5,7 @@
 using namespace std;
 
 int main () {
-    ofstream myfile("example2.txt");
+    ofstream myfile("example3.txt");
     if (myfile.is_open()) {
         myfile << "This is a line.\n";
         myfile << "This is another line.\n";

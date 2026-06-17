@@ -19,25 +19,61 @@ class CPowerInfo {
 
     public:
     // member functions based on question
-    void LoadData(string pFile, int numElements) {
+    void loadData(string pFile, int numElements) {
+        m_power_array = new  SPowerData[numElements];
         m_File.open(pFile);
-        cout << "\n Total elements :" << numElements;
-        float d1, d2;
 
         for (int i = 0; i < numElements; i++) {
-            m_File >> d1;
-            m_File >> d2;
-            cout << "\n" << d1 << "\t" << d2;
+            m_File >> m_power_array[i].m_Amp;
+            m_File >> m_power_array[i].m_Res;
+            m_power_array[i].m_Power = (m_power_array[i].m_Amp)*
+                                       (m_power_array[i].m_Amp)*
+                                       (m_power_array[i].m_Res);
         }
-       
+
         m_File.close();
     }
-    //
+    
+    int getNumElements (string pFile) {
+        int counter=0;
+        float amp, res;
+        m_File.open (pFile);
+
+        while (m_File >> amp >> res) {
+            counter++;
+        }
+
+        m_File.close();
+        numElem = counter;
+
+        return counter;
+    }
+
+    void FindMinMaxPower (float &outMinPower, float &outMaxPower) {
+        outMinPower = 10000;
+        outMaxPower = 0;
+
+        for (int i=0; i<numElem; i++) {
+
+            if (m_power_array[i].m_Power > outMaxPower)
+            outMaxPower = m_power_array[i].m_Power;
+
+            else if (m_power_array[i].m_Power < outMinPower)
+            outMinPower = m_power_array[i].m_Power;
+        }
+    }
+
 };
 
 int main() {
-    cout << "Test program!" << endl;
-    CPowerInfo c1;
-    c1.LoadData("AmpRes.txt", 7);
+    CPowerInfo pw;
+    int numElements = pw.getNumElements("AmpRes.txt");
+    pw.loadData("AmpRes.txt", numElements);
+    float minpower, maxpower;
+    pw.FindMinMaxPower(minpower, maxpower);
+    cout << "\n The minimum power = " << minpower;
+    cout << "\n The maximum power = " << maxpower;
+    cout << endl;
+
     return 1;
 }

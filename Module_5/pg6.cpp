@@ -6,6 +6,7 @@ using namespace std;
 class FileStorage {
     ofstream mfile; // obj to store text in file
     string mfilename;
+    
     public:
         FileStorage(string filename) {
              mfile.open(filename); 
@@ -18,6 +19,6 @@ class FileStorage {
 };
 
 int main() {
-    FileStorage ff("example.txt");
+    FileStorage ff("example2.txt");
     ff.writeToFile("Writing this to a file.\n");
 }
