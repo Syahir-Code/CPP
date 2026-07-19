@@ -1,47 +1,66 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
-class Appliance {
+class Transport {
     protected:
     string name;
 
     public:
-    Appliance (string a_name) : name(a_name) {} 
+    Transport (string name) {
+        this->name = name;
+    }
 
-    virtual void operate() = 0;
-};
+    virtual double calculateCost() = 0;
 
-class Fan : public Appliance {
-    public:
-    Fan (string a_name) : Appliance (a_name) {}
-
-    virtual void operate() {
-        cout << name << " is spinning" << endl;
+    virtual void display() {
+        cout << fixed << setprecision(2);
+        cout << name << " cost: " << calculateCost() << endl;
     }
 };
 
-class WashingMachine : public Appliance {
-    public:
-    WashingMachine (string a_name) : Appliance (a_name) {}
+class Bus: public Transport {
+    private:
+    int passengers;
 
-    virtual void operate () {
-        cout << name << " is washing" << endl;
+    public:
+    Bus (string name, int p) : Transport (name) {
+        passengers = p;
+    }
+
+    virtual double calculateCost () {
+        return passengers*2.5;
+    }
+};
+
+class Train : public Transport {
+    private:
+    double distance;
+
+    public:
+    Train (string name, double distance) : Transport (name) {
+        this->distance = distance;
+    }
+
+    virtual double calculateCost () {
+        return distance*0.80;
     }
 };
 
 int main()
 {
-    Fan f("Fan");
-    WashingMachine w("Washing Machine");
+    Bus bus("City Bus", 12);
+    Train train("Express Train", 50.0);
 
-    Appliance* ptr;
+    Transport* ptr;
 
-    ptr = &f;
-    ptr->operate();
+    ptr = &bus;
+    ptr->display();
 
-    ptr = &w;
-    ptr->operate();
+    ptr = &train;
+    ptr->display();
 
     return 0;
 }
+
